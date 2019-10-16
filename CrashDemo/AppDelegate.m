@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-
+#import <CrashReporter/CrashReporter.h>
 @interface AppDelegate ()
 
 @end
@@ -16,10 +16,41 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    [self printCrash];
+    [self crashSetup];
     return YES;
 }
 
+-(void)printCrash
+{
+    PLCrashReporter *instance = [PLCrashReporter sharedReporter];
+    if ([instance hasPendingCrashReport]) {
+        NSData *data = [instance loadPendingCrashReportData];
+        PLCrashReport *report = [[PLCrashReport alloc] initWithData:data error:nil];
+        NSString *text = [MSPLCrashReportTextFormatter stringValueForCrashReport:report withTextFormat:PLCrashReportTextFormatiOS];
+        NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
+        NSString *fileName = [path stringByAppendingPathComponent:@"1.crash"];
+        NSError *error = nil;
+        [text writeToFile:fileName atomically:YES encoding:NSUTF8StringEncoding error:&error];
+        if (error) {
+            NSLog(@"write crash4iOS error %@",error);
+        }
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Crash Report!!!" message:text preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
+        [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
+        [instance purgePendingCrashReport];
+    }
+}
+
+-(void)crashSetup
+{
+    PLCrashReporter *instance = [PLCrashReporter sharedReporter];
+    NSError *error;
+    [instance enableCrashReporterAndReturnError:&error];
+    if (error) {
+        NSLog(@"setup Crash SDK Fail %@",error);
+    }
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

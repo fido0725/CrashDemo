@@ -16,8 +16,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
 }
 
+- (IBAction)clickToCrash:(id)sender {
+    [self performSelectorOnMainThread:@selector(addO) withObject:nil waitUntilDone:NO];
+}
 
 @end

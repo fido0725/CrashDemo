@@ -13,6 +13,8 @@
 		313D84502357809200CF4041 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 313D844F2357809200CF4041 /* Assets.xcassets */; };
 		313D84532357809200CF4041 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 313D84512357809200CF4041 /* LaunchScreen.storyboard */; };
 		313D84562357809200CF4041 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 313D84552357809200CF4041 /* main.m */; };
+		313D845D2357815F00CF4041 /* CrashReporter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 313D845C2357815F00CF4041 /* CrashReporter.framework */; };
+		313D845F2357921600CF4041 /* export.plist in Resources */ = {isa = PBXBuildFile; fileRef = 313D845E2357921600CF4041 /* export.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		313D84522357809200CF4041 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		313D84542357809200CF4041 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		313D84552357809200CF4041 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		313D845C2357815F00CF4041 /* CrashReporter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CrashReporter.framework; sourceTree = "<group>"; };
+		313D845E2357921600CF4041 /* export.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = export.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				313D845D2357815F00CF4041 /* CrashReporter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +47,7 @@
 		313D843A2357809000CF4041 = {
 			isa = PBXGroup;
 			children = (
+				313D845E2357921600CF4041 /* export.plist */,
 				313D84452357809000CF4041 /* CrashDemo */,
 				313D84442357809000CF4041 /* Products */,
 			);
@@ -58,6 +64,7 @@
 		313D84452357809000CF4041 /* CrashDemo */ = {
 			isa = PBXGroup;
 			children = (
+				313D845C2357815F00CF4041 /* CrashReporter.framework */,
 				313D84462357809000CF4041 /* AppDelegate.h */,
 				313D84472357809000CF4041 /* AppDelegate.m */,
 				313D84492357809000CF4041 /* ViewController.h */,
@@ -128,6 +135,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				313D845F2357921600CF4041 /* export.plist in Resources */,
 				313D84532357809200CF4041 /* LaunchScreen.storyboard in Resources */,
 				313D84502357809200CF4041 /* Assets.xcassets in Resources */,
 				313D844E2357809000CF4041 /* Main.storyboard in Resources */,
@@ -285,14 +293,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZP8NT5U5CW;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CrashDemo",
+				);
 				INFOPLIST_FILE = CrashDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ptx.crash.CrashDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -301,14 +317,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZP8NT5U5CW;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CrashDemo",
+				);
 				INFOPLIST_FILE = CrashDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ptx.crash.CrashDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
